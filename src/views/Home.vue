@@ -9,18 +9,18 @@
 
 <div class="flex flex-col items-center my-12">
     <div class="flex text-gray-700">
-        <button @click="previousPage" class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
+        <button @click="changePage('prev')" class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left w-4 h-4">
                 <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
         </button>
         <div class="flex h-8 font-medium rounded-full bg-gray-200">
-            <div v-if="page>1" class="w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">{{ page -1}}</div>
+            <button @click="changePage(page -1)" v-if="page>1" class="w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">{{ page -1}}</button>
             <div class="w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full bg-pink-600 text-white ">{{page}}</div>
-            <div class="w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">{{page +1}}</div>
+            <button @click="changePage(page +1)" class="w-8 md:flex justify-center items-center hidden  cursor-pointer leading-5 transition duration-150 ease-in  rounded-full  ">{{page +1}}</button>
             <div class="w-8 h-8 md:hidden flex justify-center items-center cursor-pointer leading-5 transition duration-150 ease-in rounded-full bg-pink-600 text-white">4</div>
         </div>
-        <button @click="nextPage" class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
+        <button @click="changePage('next')" class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right w-4 h-4">
                 <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
@@ -52,27 +52,31 @@ export default {
     }
   },
   methods:{
-    previousPage: function(){
-      if(this.page != 1 ){
-        this.page--
-        fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)
-        .then((res) => res.json())
-        .then((data) => {
-          this.storeTshirts = data
+    changePage: function(scope){
+        if(scope === 'prev'){
+            this.page--
+            fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)
+            .then((res) => res.json())
+            .then((data) => {
+            this.storeTshirts = data
         });
-        window.scrollTo(0, 0);
+        }else if(scope === 'next'){
+            this.page++
+            fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)
+            .then((res) => res.json())
+            .then((data) => {
+            this.storeTshirts = data
+        });
+        }else{
+            this.page = scope
+            fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)
+            .then((res) => res.json())
+            .then((data) => {
+            this.storeTshirts = data
+        });
       }
-
-    },
-    nextPage: function(){
-      this.page++
-      fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)
-      .then((res) => res.json())
-      .then((data) => {
-        this.storeTshirts = data
-      });
       window.scrollTo(0, 0);
-    },
+      }
   },
    mounted() {
     fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)

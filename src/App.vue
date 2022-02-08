@@ -1,10 +1,10 @@
 <template>
+
   <div id="nav">
     <router-link to="/"><img class="w-36" src="logo.png"></router-link>
   </div>
   <router-view/>
 </template>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
