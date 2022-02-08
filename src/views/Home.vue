@@ -48,28 +48,29 @@ export default {
     data(){
     return {
       storeTshirts:[], 
-      page:1
+      page:1, 
+      baseAPI:"http://vps-a47222b1.vps.ovh.net/TShirt/page/",
     }
   },
   methods:{
     changePage: function(scope){
         if(scope === 'prev'){
             this.page--
-            fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)
+            fetch(this.baseAPI + this.page)
             .then((res) => res.json())
             .then((data) => {
             this.storeTshirts = data
         });
         }else if(scope === 'next'){
             this.page++
-            fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)
+            fetch(this.baseAPI + this.page)
             .then((res) => res.json())
             .then((data) => {
             this.storeTshirts = data
         });
         }else{
             this.page = scope
-            fetch("http://vps-a47222b1.vps.ovh.net/TShirt/page/" + this.page)
+            fetch(this.baseAPI + this.page)
             .then((res) => res.json())
             .then((data) => {
             this.storeTshirts = data
