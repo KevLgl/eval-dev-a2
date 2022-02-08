@@ -15,6 +15,9 @@
            <h3>
               {{ price }}
           </h3>
+          <h3>
+              {{ description }}
+          </h3>
         </div>
     </div>
 </template>
@@ -29,7 +32,8 @@ export default {
     title: String,
     price: String,
     flag:String,
-    imgUrl:String
+    imgUrl:String,
+    description:String,
   }, 
   components: {
 

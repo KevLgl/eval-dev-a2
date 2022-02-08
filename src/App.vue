@@ -1,7 +1,6 @@
 <template>
   <div id="nav">
-    <router-link to="/"><img src="logo.png"></router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/"><img src="logo.png"></router-link>
   </div>
   <router-view/>
 </template>
