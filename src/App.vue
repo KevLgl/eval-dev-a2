@@ -1,6 +1,6 @@
 <template>
   <div id="nav">
-    <router-link to="/"><img src="logo.png"></router-link>
+    <router-link to="/"><img class="w-36" src="logo.png"></router-link>
   </div>
   <router-view/>
 </template>
