@@ -1,4 +1,3 @@
-
 <template>
     <div class="shadow-lg bg-white rounded-lg relative">
         <div class="rounded-full w-12 h-12 bg-rose-600 rotate-12 absolute top-0 right-0">
@@ -18,13 +17,13 @@
           </h3>
         </div>
     </div>
-
 </template>
 
-
 <script>
+
+
 export default {
-  name: 'TshirtCard',
+  name: 'Show',
   props: {
     id:String,
     title: String,
@@ -32,12 +31,14 @@ export default {
     flag:String,
     imgUrl:String
   }, 
-  data(){
+  components: {
+
+  },
+    data(){
     return {
 
     }
   },
-  
 
 }
 </script>
