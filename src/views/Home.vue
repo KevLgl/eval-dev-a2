@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TshirtCard />
+  <li v-for="event in storeTshirts" :key="event.id">
+    {{ event }}
+  </li>
+<div class="justify-center flex bg-yellow-300 items-center h-screen">
+    <div class="text-4xl">
+      Hello 👋🏼
+    </div>
+  </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import TshirtCard from '@/components/TshirtCard.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
-  }
+    TshirtCard
+  },
+    data(){
+    return {
+      storeTshirts: [],
+    }
+  },
+
 }
 </script>
